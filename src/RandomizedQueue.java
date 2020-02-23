@@ -1,5 +1,6 @@
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -9,7 +10,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private int N;
 
     // construct an empty randomized queue
-    @SuppressWarnings("unchecked")
+
     public RandomizedQueue() {
         a = (Item[]) new Object[2];
     }
@@ -70,14 +71,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return new RandomArrayIterator();
     }
 
-    @SuppressWarnings("unchecked")
+
     private void resize(int capacity) {
         assert capacity >= N;
-        Item[] temp = (Item[]) new Object[capacity];
-        for (int i = 0; i < N; i++) {
-            temp[i] = a[i];
-        }
-        a = temp;
+
+         Item[] newArray = Arrays.copyOfRange(a, 0, capacity);
+        a = newArray;
     }
 
     private void autoEnlarge() {
@@ -97,12 +96,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             StdRandom.shuffle(r);
         }
 
-        @SuppressWarnings("unchecked")
+
         private void copyQueue() {
-            r = (Item[]) new Object[N];
-            for (int i = 0; i < N; i++) {
-                r[i] = a[i];
-            }
+
+            Item[] r = Arrays.copyOfRange(a, 0, N);
+
         }
 
         public boolean hasNext() {
