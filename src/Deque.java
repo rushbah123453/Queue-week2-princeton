@@ -46,7 +46,7 @@ checkItemNotNull(item);
     }
 
     private void checkItemNotNull(Item item) {
-        if (item == null) throw new NullPointerException();
+        if (item == null) throw new IllegalArgumentException();
     }
 
     // add the item to the back
